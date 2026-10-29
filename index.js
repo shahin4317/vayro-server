@@ -5,7 +5,6 @@ import express from "express";
 import cors from "cors";
 
 import { toNodeHandler } from "better-auth/node";
-
 import { auth } from "./lib/auth.js";
 import { connectDB } from "./config/db.js";
 
