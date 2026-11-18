@@ -3,11 +3,12 @@ import "dotenv/config";
 
 import express from "express";
 import cors from "cors";
-
 import { toNodeHandler } from "better-auth/node";
 import { auth } from "./lib/auth.js";
 import { connectDB } from "./config/db.js";
-
+import navigationRoutes from "./modules/navigation.js";
+import uploadRoutes from "./modules/upload.js";
+import storeSettingsRoutes from "./modules/storeSettings.js";
 const app = express();
 
 const port = process.env.PORT || 5000;
@@ -26,10 +27,20 @@ app.all("/api/auth/*splat", toNodeHandler(auth));
 // Other Routes Middleware
 app.use(express.json());
 
+app.use("/api", navigationRoutes);
+app.use("/api", uploadRoutes);
+app.use("/api", storeSettingsRoutes);
+
+
+
+
+
 // Home Route
 app.get("/", (req, res) => {
   res.send("VAYRO Server Running!");
 });
+
+
 
 // Start Server
 async function run() {
@@ -46,5 +57,4 @@ async function run() {
     process.exit(1);
   }
 }
-
 run();
