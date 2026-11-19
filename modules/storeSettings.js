@@ -32,13 +32,13 @@ router.post("/storeSettings/hero-banners", async (req, res) => {
         }
 
 
-        // 3. CREATE BANNER OBJECT
+        // 3. CREATE BANNER OB  JECT
 
         const bannerData = {
 
             imageUrl,
 
-            publicId,
+            publicId ,
 
             order: Number(order) || 1,
 
