@@ -9,6 +9,32 @@ const storeSettingsCollection = db.collection("storeSettings");
 
 // ADD HERO BANNER
 
+router.get("/storeSettings/hero-banners", async(req,res)=>{
+    try{
+        const storeSettings = await storeSettingsCollection.findOne({
+            _id: "main"
+        });
+        if(!storeSettings){
+            return res.status(404).json({
+                success:false,
+                message:"Store settings not found"
+            })
+        }
+        res.status(200).json({
+            success:true,
+            data:storeSettings,
+
+        });
+
+    }
+    catch(error){
+        return res.status(500).json({
+            success:false,
+            message: error.message
+        });
+    }
+});
+
 router.post("/storeSettings/hero-banners", async (req, res) => {
 
     try {
@@ -106,6 +132,8 @@ router.post("/storeSettings/hero-banners", async (req, res) => {
         });
 
     }
+
+
 
 });
 
